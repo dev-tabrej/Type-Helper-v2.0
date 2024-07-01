@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Container } from "@chakra-ui/react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import ProfilePage from "./pages/ProfilePage";
 import Homepage from "./pages/Homepage";

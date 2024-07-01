@@ -6,6 +6,7 @@ function ProfilePage() {
   const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
     <Flex w={"full"} borderRadius={5}>
+      {/* Profile view Flex */}
       <Flex
         direction={"column"}
         align={"center"}
@@ -36,13 +37,15 @@ function ProfilePage() {
         maxHeight={"full"}
         boxShadow={"0px 0px 4px black"}
       >
+        {/* Past practice results  */}
         <Flex
           height={20}
           fontWeight={"bolder"}
           fontSize={"xl"}
           justify={"space-around"}
           align={"center"}
-          border={"2px solid black"}
+          // border={"1px solid black"}
+          boxShadow={"0 0 3px black"}
         >
           <Text>S No</Text>
           <Text>Typing type</Text>
@@ -56,9 +59,9 @@ function ProfilePage() {
               height={20}
               justify={"space-around"}
               align={"center"}
-              bg={"rgba(90,95,95,0.5)"}
+              bg={"rgba(0,0,0,0.4)"}
               // border={"2px solid black"}
-              boxShadow={"0px 0px 2px black"}
+              boxShadow={"0px 0px 1px white"}
               borderRadius={2}
               m={2}
               color={"Skyblue"}
