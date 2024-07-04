@@ -11,7 +11,7 @@ import { practiceType, time } from "../atom/filterAtom";
 function Homepage() {
   const start = useRecoilValue(startState);
   const selectedPracticetype = useRecoilValue(practiceType);
-  const selectedTime = useRecoilValue(time);
+  // const selectedTime = useRecoilValue(time);
   return (
     <Flex direction={"column"}>
       {!start ? (
