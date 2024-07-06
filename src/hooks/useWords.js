@@ -31,6 +31,15 @@ const useWords = (practiceType) => {
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
   const [correctKeystrokes, setCorrectKeystrokes] = useState(0);
 
+  const handleRestart = () => {
+    setCorrectWords([]);
+    setIncorrectWords([]);
+    setCurrentWordIndex(0);
+    setCurrentLineIndex(0);
+    setTotalKeystrokes(0);
+    setTypedWord("");
+    shuffleArray(words);
+  };
   useEffect(() => {
     let initialWords = [];
     if (practiceType === "common") {
@@ -115,6 +124,7 @@ const useWords = (practiceType) => {
     getLetterColor,
     setTypedWord,
     wordsPerLine,
+    handleRestart,
   };
 };
 

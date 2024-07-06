@@ -12,6 +12,7 @@ function GuideImage() {
         bottom={10}
         opacity={0.7}
         border={"2px solid red"}
+        boxShadow={"dark-lg"}
         borderRadius={10}
       />
       <Text
@@ -20,6 +21,7 @@ function GuideImage() {
         top={340}
         color={"white"}
         fontWeight={"500"}
+        textShadow={"1px 1px 4px red"}
       >
         Place Your fingers like this for better speed.
       </Text>

@@ -26,6 +26,7 @@ const Words = ({ practiceType }) => {
     secondLineWords,
     getLetterColor,
     setTypedWord,
+    handleRestart,
     wordsPerLine,
   } = useWords(practiceType);
   const { timeLeft, setTimeLeft } = useTimer(initialTime, start);
@@ -36,9 +37,11 @@ const Words = ({ practiceType }) => {
     }
   }, [timeLeft]);
 
-  const handleRestart = () => {
+  const handleRestartClick = () => {
     setShowResults(false);
     setTimeLeft(initialTime);
+    handleRestart();
+
     // Reset showResults state when restarting
     // Additional logic for restarting practice if needed
   };
@@ -104,6 +107,9 @@ const Words = ({ practiceType }) => {
           </Text>
 
           {/* Display other practice elements */}
+          <Text fontSize={"4xl"} color={"greenyellow"}>
+            {typedWord}
+          </Text>
           {/* Modify as needed */}
         </>
       ) : (
@@ -118,7 +124,7 @@ const Words = ({ practiceType }) => {
           totalKeystrokes={totalKeystrokes}
           correctKeystrokes={correctKeystrokes}
           initialTime={initialTime}
-          onRestart={handleRestart} // Pass handleRestart function as onRestart prop
+          onRestart={handleRestartClick} // Pass handleRestart function as onRestart prop
         />
       )}
     </Flex>

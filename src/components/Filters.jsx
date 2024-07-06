@@ -75,6 +75,7 @@ function Filters() {
         width="150px"
         fontSize="larger"
         mt={10}
+        boxShadow={"md"}
         onClick={() => {
           setStart(!start);
           console.log(start);

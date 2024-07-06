@@ -5,16 +5,17 @@ import React from "react";
 function ProfilePage() {
   const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
-    <Flex w={"full"} borderRadius={5}>
+    <Flex w={"full"} borderRadius={5} mt={5}>
       {/* Profile view Flex */}
       <Flex
         direction={"column"}
         align={"center"}
         borderRadius={5}
         flex={20}
+        mx={4}
         height={400}
-        boxShadow={"0px 0px 4px black"}
-        p={2}
+        boxShadow={"0px 0px 10px black"}
+        p={10}
       >
         <Avatar size={"2xl"} />
         <Text fontSize={"2xl"} m={2}>
@@ -35,7 +36,7 @@ function ProfilePage() {
         mx={2}
         borderRadius={5}
         maxHeight={"full"}
-        boxShadow={"0px 0px 4px black"}
+        boxShadow={"0px 0px 10px black"}
       >
         {/* Past practice results  */}
         <Flex
@@ -45,26 +46,33 @@ function ProfilePage() {
           justify={"space-around"}
           align={"center"}
           // border={"1px solid black"}
-          boxShadow={"0 0 3px black"}
+          boxShadow={"0 0 20px black"}
         >
           <Text>S No</Text>
           <Text>Typing type</Text>
           <Text>Accuracy</Text>
           <Text>WPM</Text>
         </Flex>
-        <Box overflowY={"scroll"} maxHeight={580} mt={2}>
+        <Box
+          overflowY={"scroll"}
+          maxHeight={550}
+          mt={2}
+          pb={2}
+          boxShadow={"dark-lg"}
+          bg={"grey.800"}
+        >
           {array.map((i) => (
             <Flex
               key={i}
               height={20}
               justify={"space-around"}
               align={"center"}
-              bg={"rgba(0,0,0,0.4)"}
               // border={"2px solid black"}
-              boxShadow={"0px 0px 1px white"}
+              boxShadow={"dark-lg"}
+              bg={"rgba(0,0,0,0.80)"}
               borderRadius={2}
               m={2}
-              color={"Skyblue"}
+              color={"skyblue"}
             >
               <Text>{i}</Text>
               <Text>Programming</Text>

@@ -96,10 +96,10 @@ function Keypad() {
       direction="column"
       justifyContent={"center"}
       p={5}
-      border={"5px solid crimson"}
       borderRadius={10}
       margin={2}
-      maxWidth={"90%"}
+      boxShadow={"dark-lg"}
+      maxW={{ sm: "600px", md: "1000px" }}
       position={"fixed"}
       bottom={10}
     >
