@@ -37,6 +37,7 @@ const useWords = (practiceType) => {
     setCurrentWordIndex(0);
     setCurrentLineIndex(0);
     setTotalKeystrokes(0);
+    setCorrectKeystrokes(0);
     setTypedWord("");
     shuffleArray(words);
   };

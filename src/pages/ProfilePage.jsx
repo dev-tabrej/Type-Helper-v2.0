@@ -69,7 +69,7 @@ function ProfilePage() {
               align={"center"}
               // border={"2px solid black"}
               boxShadow={"dark-lg"}
-              bg={"rgba(0,0,0,0.80)"}
+              bg={"rgba(20,80,100,0.05)"}
               borderRadius={2}
               m={2}
               color={"skyblue"}
