@@ -26,7 +26,7 @@ const userSchema = mongoose.Schema(
     },
     results: [
       {
-        typingType: {
+        practiceType: {
           type: String,
           required: true,
         },
@@ -34,7 +34,7 @@ const userSchema = mongoose.Schema(
           type: Number,
           required: true,
         },
-        wps: {
+        wpm: {
           type: Number,
           required: true,
         },

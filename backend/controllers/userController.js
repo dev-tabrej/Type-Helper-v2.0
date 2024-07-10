@@ -81,5 +81,92 @@ const getProfile = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+const postResults = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const { accuracy, wpm, practiceType } = req.body;
 
-export { signupUser, loginUser, getProfile, logoutUser };
+    // Validate input
+    if (
+      typeof accuracy !== "number" ||
+      typeof wpm !== "number" ||
+      !practiceType
+    ) {
+      return res.status(400).json({ error: "Invalid input data" });
+    }
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const result = { accuracy, wpm, practiceType };
+    user.results.push(result);
+    await user.save(); // Ensure to await the save operation
+
+    res.status(201).json({ message: "Result saved successfully" });
+  } catch (error) {
+    console.error("An error occurred: " + error.message);
+  }
+};
+
+const getResults = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const results = user.results;
+
+    res.status(200).json(results);
+  } catch (error) {
+    console.error("An error occurred: " + error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const getBestResult = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const results = user.results;
+
+    if (!results.length) {
+      return res.status(404).json({ error: "No results found" });
+    }
+
+    // Find the best result based on accuracy and wpm
+    let bestResult = results[0];
+    for (const result of results) {
+      if (
+        result.wpm > bestResult.wpm ||
+        (result.accuracy === bestResult.accuracy && result.wpm > bestResult.wpm)
+      ) {
+        bestResult = result;
+      }
+    }
+
+    res.status(200).json(bestResult);
+  } catch (error) {
+    console.error("An error occurred: " + error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export {
+  signupUser,
+  loginUser,
+  getProfile,
+  logoutUser,
+  postResults,
+  getResults,
+  getBestResult,
+};
