@@ -24,10 +24,22 @@ const userSchema = mongoose.Schema(
       type: String,
       default: "",
     },
-    results: {
-      type: [String],
-      default: [],
-    },
+    results: [
+      {
+        typingType: {
+          type: String,
+          required: true,
+        },
+        accuracy: {
+          type: Number,
+          required: true,
+        },
+        wps: {
+          type: Number,
+          required: true,
+        },
+      },
+    ],
   },
   { timestamps: true }
 );
