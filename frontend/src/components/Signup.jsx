@@ -16,7 +16,7 @@ import {
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
-
+import useShowToast from "../hooks/useToast";
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [inputs, setInputs] = useState({
@@ -26,12 +26,31 @@ export default function Signup() {
     password: "",
   });
   const navigate = useNavigate();
-
-  const handleSubmit = () => {
+  const toast = useShowToast();
+  const handleSubmit = async () => {
     // Add your signup logic here
+    try {
+      if (!inputs.password || !inputs.username || !inputs.email) {
+        toast("Error", "username ,password and email are required", "error");
+      }
+      const res = await fetch(`http://localhost:5000/users/signup`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(inputs),
+      });
+      const data = await res.json();
+      console.log(data);
+      if (res.ok) {
+        toast("Success: ", data.message, "success");
+      }
+      // toast("Error: ", data.error, "error");
+    } catch (error) {
+      toast("Error: ", error.message, "error");
+    }
 
     // Navigate to the desired page after successful signup
-    navigate("/desired-path");
+    navigate("/");
   };
 
   return (

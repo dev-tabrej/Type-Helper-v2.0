@@ -3,13 +3,13 @@ import { Flex, Select, Text, Button } from "@chakra-ui/react";
 import { LuClock3 } from "react-icons/lu";
 import { useRecoilState } from "recoil";
 import { startState } from "../atom/StartAtom";
-import { time, practiceType } from "../atom/filterAtom";
+import { time, practiceTypeAtom } from "../atom/filterAtom";
 
 function Filters() {
   const [start, setStart] = useRecoilState(startState);
-  const [selectedPracticeType, setPracticeType] = useRecoilState(practiceType); // Renamed to avoid naming conflict
+  const [practiceType, setPracticeType] = useRecoilState(practiceTypeAtom); // Renamed to avoid naming conflict
   const [selectedTime, setTime] = useRecoilState(time); // Renamed to avoid naming conflict
-  console.log(selectedPracticeType, selectedTime);
+  console.log(practiceType, selectedTime);
   return (
     <Flex
       direction="column"

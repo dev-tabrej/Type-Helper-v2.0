@@ -7,10 +7,10 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import GuideImage from "../components/GuideImage";
 import Keypad from "./../components/Keypad";
 import Words from "../components/words";
-import { practiceType, time } from "../atom/filterAtom";
+import { practiceTypeAtom, time } from "../atom/filterAtom";
 function Homepage() {
   const start = useRecoilValue(startState);
-  const selectedPracticetype = useRecoilValue(practiceType);
+  const practicetype = useRecoilValue(practiceTypeAtom);
   // const selectedTime = useRecoilValue(time);
   return (
     <Flex direction={"column"}>
@@ -21,7 +21,7 @@ function Homepage() {
         </Flex>
       ) : (
         <Flex justify={"center"}>
-          <Words practiceType={selectedPracticetype} />
+          <Words practiceType={practicetype} />
           <Keypad />
         </Flex>
       )}

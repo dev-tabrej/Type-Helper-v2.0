@@ -6,6 +6,8 @@ import ProfilePage from "./pages/ProfilePage";
 import Homepage from "./pages/Homepage";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import { useRecoilValue } from "recoil";
+import { userAtom } from "./atom/userAtom";
 function App() {
   return (
     <Container maxW={{ base: "620px", md: "full" }}>

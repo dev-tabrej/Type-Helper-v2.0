@@ -7,17 +7,14 @@ import { Chart, ArcElement, Tooltip, Legend, Title } from "chart.js";
 Chart.register(ArcElement, Tooltip, Legend);
 
 const Results = ({
+  accuracy,
+  wpm,
   correctWords,
   incorrectWords,
   totalKeystrokes,
   correctKeystrokes,
   initialTime,
 }) => {
-  const accuracy =
-    totalKeystrokes === 0 ? 0 : (correctKeystrokes / totalKeystrokes) * 100;
-  const wpm =
-    ((correctWords.length + incorrectWords.length) / initialTime) * 60;
-
   const data = {
     labels: ["Correct", "Incorrect"],
     datasets: [

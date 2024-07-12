@@ -1,11 +1,11 @@
 import { atom } from "recoil";
-const practiceType = atom({
-  key: "practiceType",
+const practiceTypeAtom = atom({
+  key: "practiceTypeAtom",
   default: "common",
 });
 
 const time = atom({
-  key: "time",
+  key: "timeAtom",
   default: 5,
 });
-export { practiceType, time };
+export { practiceTypeAtom, time };
