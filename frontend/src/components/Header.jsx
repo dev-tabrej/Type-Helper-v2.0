@@ -11,6 +11,7 @@ import Login from "./Login";
 function Header() {
   const [user, setUser] = useRecoilState(userAtom);
   const { pathname } = useLocation();
+  const toast = useShowToast();
   console.log(pathname);
   const handelLogout = async () => {
     try {
@@ -21,13 +22,14 @@ function Header() {
       const data = await res.json();
       console.log(data);
       if (data.error) {
-        showToast("Error: ", data.error, "error");
+        toast("Error: ", data.error, "error");
         return;
       }
+      toast("Logged Out", "user logged out successfully", "success");
       localStorage.removeItem("user");
       setUser(null);
     } catch (error) {
-      showToast("Error: ", error, "error");
+      toast("Error: ", error, "error");
     }
   };
   return (

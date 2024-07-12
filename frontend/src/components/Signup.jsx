@@ -32,6 +32,7 @@ export default function Signup() {
     try {
       if (!inputs.password || !inputs.username || !inputs.email) {
         toast("Error", "username ,password and email are required", "error");
+        return;
       }
       const res = await fetch(`http://localhost:5000/users/signup`, {
         method: "POST",

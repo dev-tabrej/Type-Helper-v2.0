@@ -53,6 +53,7 @@ export default function Login() {
         localStorage.setItem("user", JSON.stringify(data));
         setUser(data);
       }
+      showToast("Logged In", "User logged in successfully", "success");
     } catch (error) {
       console.log(error);
       showToast("Error", error.message, "error");
