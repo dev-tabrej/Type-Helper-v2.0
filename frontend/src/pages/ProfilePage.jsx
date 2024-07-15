@@ -3,10 +3,15 @@ import React, { useEffect, useState } from "react";
 import useShowToast from "../hooks/useToast";
 import { useRecoilValue } from "recoil";
 import { userAtom } from "../atom/userAtom";
+import { Doughnut } from "react-chartjs-2";
 
 function ProfilePage() {
   const [results, setResults] = useState([]);
-  const [bestResult, setBestResult] = useState(null);
+  const [bestResult, setBestResult] = useState({
+    accuracy: 0,
+    wpm: 0,
+    practiceType: "",
+  });
   const [loading, setLoading] = useState(false);
   const toast = useShowToast();
   const user = useRecoilValue(userAtom);
@@ -48,51 +53,80 @@ function ProfilePage() {
     };
     getResults();
   }, [user]);
-
+  const data = {
+    labels: ["Correct", "Incorrect"],
+    datasets: [
+      {
+        data: [bestResult ? bestResult.accuracy : 0, 100 - bestResult.accuracy],
+        backgroundColor: ["#4CAF50", "#F44336"],
+        hoverBackgroundColor: ["#66BB6A", "#EF5350"],
+        borderWidth: 0,
+      },
+    ],
+  };
+  const options = {
+    cutout: "70%",
+    plugins: {
+      legend: {
+        display: true,
+      },
+    },
+  };
   return (
     <Flex w={"full"} borderRadius={5} mt={5}>
       {/* Profile view Flex */}
-      <Flex
-        direction={"column"}
-        align={"center"}
-        borderRadius={5}
-        flex={20}
-        mx={4}
-        h={400}
-        minW={250}
-        boxShadow={"0px 0px 10px black"}
-        p={10}
-      >
-        <Avatar size={"2xl"} />
-        <Text fontSize={"2xl"} m={2} textTransform={"capitalize"}>
-          {user ? user.name : "Guest"}
-        </Text>
-        <Text fontSize={"large"} m={2} color={"grey"} mt={-2}>
-          {user ? `@${user.username}` : "@Guest"}
-        </Text>
-        {
-          <Flex
-            direction={"column"}
-            justify={"center"}
-            align={"flex-start"}
-            color={"skyblue"}
-          >
-            <Text fontSize={"2xl"} fontWeight={"bold"}>
-              Your Personal Best
-            </Text>
-            <Box>
-              <Text>
-                Practice Type:{" "}
-                {user && bestResult ? bestResult.practiceType : ""}
+      <Flex direction={"column"} gap={5} flex={20} mx={4} minW={250}>
+        <Flex
+          direction={"column"}
+          align={"center"}
+          borderRadius={5}
+          boxShadow={"0px 0px 10px black"}
+          p={10}
+        >
+          <Avatar size={"2xl"} />
+          <Text fontSize={"2xl"} m={2} textTransform={"capitalize"}>
+            {user ? user.name : "Guest"}
+          </Text>
+          <Text fontSize={"large"} m={2} color={"grey"} mt={-2}>
+            {user ? `@${user.username}` : "@Guest"}
+          </Text>
+        </Flex>
+        <Flex
+          direction={"column"}
+          maxH={"300px"}
+          align={"center"}
+          borderRadius={10}
+          boxShadow={"dark-lg"}
+          p={2}
+        >
+          <Text fontSize={"2xl"} fontWeight={"bold"}>
+            Your Personal Best
+          </Text>
+          {bestResult && (
+            <Box h={40} w={40} mb={3} position={"relative"}>
+              <Doughnut data={data} options={options} />
+              <Text
+                position="absolute"
+                top="50%"
+                left="50%"
+                transform="translate(-50%, 30%)"
+                fontSize={"xl"}
+              >
+                {`${bestResult.wpm} wpm`}
               </Text>
-              <Text>
-                Accuracy:{" "}
-                {user && bestResult ? bestResult.accuracy.toFixed(2) : 0}%
-              </Text>
-              <Text>WPM: {user && bestResult ? bestResult.wpm : 0}</Text>
             </Box>
-          </Flex>
-        }
+          )}
+          <Box>
+            <Text>
+              Practice Type: {user && bestResult ? bestResult.practiceType : ""}
+            </Text>
+            <Text>
+              Accuracy:{" "}
+              {user && bestResult ? bestResult.accuracy.toFixed(2) : 0}%
+            </Text>
+            <Text>WPM: {user && bestResult ? bestResult.wpm : 0}</Text>
+          </Box>
+        </Flex>
       </Flex>
       <Flex
         flex={80}

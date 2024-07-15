@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Flex, Text } from "@chakra-ui/react";
+import { Button, Flex, Text } from "@chakra-ui/react";
 import useWords from "../hooks/useWords";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { startState } from "../atom/StartAtom";
@@ -45,7 +45,10 @@ const Words = ({ practiceType }) => {
     // Reset showResults state when restarting
     // Additional logic for restarting practice if needed
   };
-
+  const handleStop = () => {
+    setTimeLeft(initialTime);
+    setStart(!start);
+  };
   return (
     <Flex
       flexDirection="column"
@@ -111,6 +114,7 @@ const Words = ({ practiceType }) => {
             {typedWord}
           </Text>
           {/* Modify as needed */}
+          <Button onClick={handleStop}>stop</Button>
         </>
       ) : (
         <ResultsModal
