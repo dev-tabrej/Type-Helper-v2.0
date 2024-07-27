@@ -12,6 +12,7 @@ import { useRecoilValue } from "recoil";
 import { practiceTypeAtom } from "../atom/filterAtom";
 import useShowToast from "../hooks/useToast";
 import { userAtom } from "../atom/userAtom";
+import url from "../hooks/url";
 
 const ResultsModal = ({
   isOpen,
@@ -38,7 +39,7 @@ const ResultsModal = ({
       return;
     }
     try {
-      const res = await fetch(`http://localhost:5000/users/postresults`, {
+      const res = await fetch(`${url}/users/postresults`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

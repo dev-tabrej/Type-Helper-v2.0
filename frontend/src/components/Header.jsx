@@ -7,6 +7,7 @@ import useShowToast from "../hooks/useToast";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../atom/userAtom";
 import Login from "./Login";
+import url from "../hooks/url";
 
 function Header() {
   const [user, setUser] = useRecoilState(userAtom);
@@ -15,7 +16,7 @@ function Header() {
   console.log(pathname);
   const handelLogout = async () => {
     try {
-      const res = await fetch("http://localhost:5000/users/logout", {
+      const res = await fetch(`${url}/users/logout`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       });

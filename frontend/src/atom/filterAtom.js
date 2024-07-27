@@ -6,6 +6,6 @@ const practiceTypeAtom = atom({
 
 const time = atom({
   key: "timeAtom",
-  default: 5,
+  default: 60,
 });
 export { practiceTypeAtom, time };

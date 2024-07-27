@@ -4,6 +4,7 @@ import useShowToast from "../hooks/useToast";
 import { useRecoilValue } from "recoil";
 import { userAtom } from "../atom/userAtom";
 import { Doughnut } from "react-chartjs-2";
+import url from "../hooks/url";
 
 function ProfilePage() {
   const [results, setResults] = useState([]);
@@ -23,11 +24,13 @@ function ProfilePage() {
         setLoading(false);
         return;
       }
+      const token=localStorage.getItem('token')
       try {
-        const res = await fetch("http://localhost:5000/users/results", {
+        const res = await fetch(`${url}/users/results`, {
           method: "GET",
           credentials: "include",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json" ,"Authorization":`Bearer ${token}`},
+
         });
         const data = await res.json();
         setResults(data);

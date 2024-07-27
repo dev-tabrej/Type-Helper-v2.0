@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 import useShowToast from "../hooks/useToast";
 import { useRecoilState } from "recoil";
 import { userAtom } from "./../atom/userAtom";
+import url from "../hooks/url";
 export default function Login() {
   const [inputs, setInputs] = useState({ password: "", username: "" });
   const [showPassword, setShowPassword] = useState(false);
@@ -35,19 +36,19 @@ export default function Login() {
   }, [user, navigate]);
   const handleLogin = async () => {
     setIsLoading(true);
-    console.log(inputs);
+    // console.log(inputs);
     try {
       if (!inputs.password || !inputs.username) {
         showToast("Error", "Enter a valid username or password", "error");
       }
-      const res = await fetch(`http://localhost:5000/users/login`, {
+      const res = await fetch(`${url}/users/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(inputs),
         credentials: "include",
       });
       const data = await res.json();
-      console.log(data);
+      console.log("this is data from fetch",data);
       if (res.ok) {
         // navigate("/");
         localStorage.setItem("user", JSON.stringify(data));
