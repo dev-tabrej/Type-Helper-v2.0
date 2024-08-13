@@ -26,7 +26,7 @@ function ProfilePage() {
       }
       const token=localStorage.getItem('token')
       try {
-        const res = await fetch(`${url}/users/results`, {
+        const res = await fetch(`${url}/users/results/`, {
           method: "GET",
           credentials: "include",
           headers: { "Content-Type": "application/json" ,"Authorization":`Bearer ${token}`},

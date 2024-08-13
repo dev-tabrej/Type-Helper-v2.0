@@ -32,7 +32,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <RecoilRoot>
         <ChakraProvider >
-          {/* <ColorModeScript initialColorMode={theme.config.initialColorMode} /> */}
           <App />
         </ChakraProvider>
       </RecoilRoot>
